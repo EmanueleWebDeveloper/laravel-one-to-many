@@ -2,18 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Project;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class StoreProjectRequest extends FormRequest
+class UpdateTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,12 +22,7 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', Rule::unique(Project::class), 'max:64'],
-            'description' => ['nullable'],
-            'cover' => ['nullable','image'],
-            'content' => ['nullable'],
-            'type_id' => ['nullable', 'exists:types,id']
-
+            //
         ];
     }
 }

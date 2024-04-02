@@ -28,6 +28,8 @@ class UpdateProjectRequest extends FormRequest
             'description' => ['nullable'],
             'cover' => ['nullable','image'],
             'content' => ['nullable'],
+            'type_id' => ['nullable', 'exists:types,id']
+
         ];
     }
 }

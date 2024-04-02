@@ -8,6 +8,13 @@
         <img class="img-fluid" src="{{ asset('/storage/' . $project->cover ) }}" alt="{{ $project->title }}">
         @endif
 
+          {{-- mostrimao categoria se presente --}}
+          <p>
+            <strong>
+                {{ $project->type ? $project->type->name : 'Non ci sono categorie' }}
+            </strong>
+        </p>
+
         <p>{{ $project->content }}</p>
 
     </div>
