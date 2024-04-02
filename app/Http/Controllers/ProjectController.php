@@ -76,7 +76,6 @@ class ProjectController extends Controller
     {
         $types = Type::all();
 
-        // dd($project->toArray());
         return view('pages.edit', compact('project', 'types'));
     }
 
@@ -85,7 +84,7 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        // dd($project->cover);
+
         $validated_data = $request->validated();
         $slug = Project::generateSlug($request->title);
         $validated_data['slug'] = $slug;
@@ -97,14 +96,14 @@ class ProjectController extends Controller
                 dd($project->cover,'non sono riuscito a cancellare');
               }
             }
-            // dd($validated_data['cover']);
+
             $path = Storage::put('project_images', $validated_data['cover']);
 
             $validated_data['cover'] = $path;
         }
 
         $project->update($validated_data);
-        return redirect()->route('dashboard.project.index');
+        return redirect()->route('dashboard.project.show');
     }
 
     /**
