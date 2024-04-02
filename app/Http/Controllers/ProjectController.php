@@ -82,14 +82,16 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
     public function update(UpdateProjectRequest $request, Project $project)
     {
 
         $validated_data = $request->validated();
+
         $slug = Project::generateSlug($request->title);
         $validated_data['slug'] = $slug;
 
-        if($validated_data['cover']){
+        if($array['cover'] ?? false){
             if($project->cover){
               $checkdelete=Storage::delete($project->cover);
               if(!$checkdelete){
@@ -103,7 +105,7 @@ class ProjectController extends Controller
         }
 
         $project->update($validated_data);
-        return redirect()->route('dashboard.project.show');
+        return redirect()->route('dashboard.project.show', ['project' => $project]);
     }
 
     /**
